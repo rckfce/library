@@ -18,3 +18,11 @@ thead {
     padding: 5px 20px 5px 20p;
     margin: 0 0 0.2rem 0.2rem;
 }
+
+.edit:hover {
+    background-color: indianred;
+}
+
+.edit {
+    width: 30px;
+}

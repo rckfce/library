@@ -35,8 +35,21 @@ function displayTable() {
             cell.appendChild(cellNode);
             row.appendChild(cell);
         }
+        let lastCell = document.createElement("th");
+        let editImg = document.createElement("img");
+        editImg.src = "img/delete.png";
+        lastCell.classList.add("edit");
+        lastCell.appendChild(editImg);
+        row.appendChild(lastCell);
         table.appendChild(row);
     }
 }
 
 displayTable();
+
+const newBookButton = document.querySelector(".new-book");
+newBookButton.addEventListener("click", newBookForm);
+
+function newBookForm() {
+    
+}
