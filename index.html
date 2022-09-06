@@ -22,11 +22,14 @@
             </tr>
         </thead>
         <tbody class="content">
-            <form>
-                <tr>
+            
+        </tbody>
+        <tfoot class="add-new-book">
+            <tr>
+                <form action="post">
                     <th><input type="text" id="title" name="title" placeholder="Books title" required></th>
                     <th><input type="text" id="author" name="author" placeholder="Books author" required></th>
-                    <th><input type="number" id="number" name="pages" required></th>
+                    <th><input type="number" id="pages" name="pages" required></th>
                     <th>
                         <input name="readOrNot" list="select-two">
                             <datalist id="select-two">
@@ -34,12 +37,15 @@
                                 <option value="Not read yet">
                             </datalist>
                     </th>
-                    <th><input type="image" src="img/check.png"></th>
-                </tr>
-            </form>
-        </tbody>
+                    <th class="check"><input type="image" src="img/check.png"></th>
+                </form>
+            </tr>
+            
+        </tfoot>
         
     </table>
+
+    
      
 </body>
 </html>
