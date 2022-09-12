@@ -1,5 +1,5 @@
 let myLibrary = [
-    {title:"Bourne Identity", author:"R.Ludlum", pages:"312", read:"yes"},
+    {title:"Bourne Identity", author:"R.Ludlum", pages:311, read:"yes"},
     {title:"Bourne Identity1", author:"R.Ludlum", pages:"312", read:"yes"},
     {title:"Bourne Identity2", author:"R.Ludlum", pages:"312", read:"yes"},
     {title:"Bourne Identity4", author:"R.Ludlum", pages:"312", read:"yes"}
@@ -16,18 +16,51 @@ function Book(title, author, pages, read) {
 }
 
 
-const addBookToLibrary = () => {
-    let title = "The Hobbit";
-    let author = "J.R.R. Tolkien";
-    let pages = "295";
-    let read = "not read yet";
+ const addBookToLibrary = () => {
+    let title = document.getElementById("title").value;
+    let author = document.getElementById("author").value;
+    let pages = document.getElementById("pages").value;
+    let read = document.getElementById("did-read").value;
     let newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
 }
-  
-addBookToLibrary();
 
-console.log(myLibrary);
+function addNewBook() {
+    if(validateInputs()){
+        addBookToLibrary();
+        appendNewRow();
+    }
+}
+
+function validateInputs() {
+    let title = document.getElementById("title").value;
+    let author = document.getElementById("author").value;
+    let pages = document.getElementById("pages").value;
+    let read = document.getElementById("did-read").value;
+    if(title === "" || author === "" || pages === "" || read === "") return false;
+    return true;
+}
+
+function appendNewRow() {
+    let row = document.createElement("tr");
+    for(let properties in myLibrary[myLibrary.length - 1]) {
+        let cell = document.createElement("th");
+        let cellNode = document.createTextNode(myLibrary[myLibrary.length - 1][properties.toString()]);
+        cell.appendChild(cellNode);
+        row.appendChild(cell);
+    }
+    let lastCell = document.createElement("th");
+    let editImg = document.createElement("img");
+    editImg.setAttribute("onclick", "deleteRow(this)");
+    editImg.setAttribute("data-id", myLibrary.length - 1);
+    editImg.src = "img/delete.png";
+    lastCell.classList.add("edit");
+    lastCell.appendChild(editImg);
+    row.appendChild(lastCell);
+    table.appendChild(row);
+}
+
+
 const table = document.querySelector(".content");
 
 function displayTable() {
@@ -35,7 +68,7 @@ function displayTable() {
         let row = document.createElement("tr");
         for(let properties in myLibrary[i]) {
             let cell = document.createElement("th");
-            let cellNode = document.createTextNode(myLibrary[i][properties]);
+            let cellNode = document.createTextNode(myLibrary[i][properties.toString()]);
             cell.appendChild(cellNode);
             row.appendChild(cell);
         }
