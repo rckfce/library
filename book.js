@@ -1,8 +1,8 @@
 let myLibrary = [
-    {title:"Bourne Identity", author:"R.Ludlum", pages:311, read:"yes"},
-    {title:"Bourne Identity1", author:"R.Ludlum", pages:"312", read:"yes"},
-    {title:"Bourne Identity2", author:"R.Ludlum", pages:"312", read:"yes"},
-    {title:"Bourne Identity4", author:"R.Ludlum", pages:"312", read:"yes"}
+    {title:"Bourne Identity", author:"R.Ludlum", pages:311, read:"Not read yet"},
+    {title:"Bourne Identity1", author:"R.Ludlum", pages:"312", read:"Read it"},
+    {title:"Bourne Identity2", author:"R.Ludlum", pages:"312", read:"Read it"},
+    {title:"Bourne Identity4", author:"R.Ludlum", pages:"312", read:"Not read yet"}
 ];
 
 /*   constuctor    */
@@ -41,6 +41,11 @@ function validateInputs() {
     return true;
 }
 
+function checkStatus(e) {
+    if(e === "Not read yet") return true;
+    return false;
+}
+
 function appendNewRow() {
     let row = document.createElement("tr");
     for(let properties in myLibrary[myLibrary.length - 1]) {
@@ -48,6 +53,14 @@ function appendNewRow() {
         let cellNode = document.createTextNode(myLibrary[myLibrary.length - 1][properties.toString()]);
         cell.appendChild(cellNode);
         row.appendChild(cell);
+        if(checkStatus(myLibrary[myLibrary.length - 1][properties.toString()])) {
+            let readImg = document.createElement("img");
+            readImg.setAttribute("onclick", "changeStatus(this)");
+            readImg.setAttribute("class", "status");
+            readImg.setAttribute("data-id", myLibrary.length - 1);
+            readImg.src = "img/book-read.png";
+            cell.appendChild(readImg);
+        }
     }
     let lastCell = document.createElement("th");
     let editImg = document.createElement("img");
@@ -69,6 +82,14 @@ function displayTable() {
             let cell = document.createElement("th");
             let cellNode = document.createTextNode(myLibrary[i][properties.toString()]);
             cell.appendChild(cellNode);
+            if(checkStatus(myLibrary[i][properties.toString()])) {
+                let readImg = document.createElement("img");
+                readImg.setAttribute("onclick", "changeStatus(this)");
+                readImg.setAttribute("class", "status");
+                readImg.setAttribute("data-id", i);
+                readImg.src = "img/book-read.png";
+                cell.appendChild(readImg);
+            }
             row.appendChild(cell);
         }
         let lastCell = document.createElement("th");
@@ -178,4 +199,11 @@ function refreshTable() {
 function deleteRow(d) {
     myLibrary.splice(d.getAttribute("data-id"), 1);
     refreshTable();
+}
+
+function changeStatus(d) {
+    let statusIndex = d.getAttribute("data-id");
+    myLibrary[statusIndex].read = "Read it";
+    refreshTable();
+    console.log(myLibrary);
 }
