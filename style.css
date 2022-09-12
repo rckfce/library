@@ -35,3 +35,23 @@ input {
     width: 95%;
     height: 95%;
 }
+
+input[type="number" i] {
+    width: 90%;
+}
+
+.hidden {
+    display: none;
+}
+
+.title {
+    width: 35%;
+}
+
+.author {
+    width: 35%;
+}
+
+.pages {
+    width: 10%;
+}

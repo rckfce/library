@@ -10,23 +10,23 @@
 </head>
 <body>
     <h1>Library</h1>
-    <button class="new-book">Add new book</button>
+    <button class="new-book" onclick="addNew()">Add new book</button>
     <table>
         <thead>
             <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Pages</th>
-                <th>Read or not</th>
-                <th>&nbsp;</th>
+                <th class="title">Title</th>
+                <th class="author">Author</th>
+                <th class="pages">Pages</th>
+                <th class="read">Read or not</th>
+                <th class="lastCell">&nbsp;</th>
             </tr>
         </thead>
         <tbody class="content">
             
         </tbody>
-        <tfoot class="add-new-book">
+        <tfoot class="hidden" id="add-new-book">
             <tr>
-                <form action="#" onsubmit="return false;">
+                <form class="myForm" action="#" onsubmit="return false;">
                     <th><input type="text" id="title" name="title" placeholder="Books title" required></th>
                     <th><input type="text" id="author" name="author" placeholder="Books author" required></th>
                     <th><input type="number" id="pages" name="pages" required></th>

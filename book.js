@@ -5,7 +5,6 @@ let myLibrary = [
     {title:"Bourne Identity4", author:"R.Ludlum", pages:"312", read:"yes"}
 ];
 
-
 /*   constuctor    */
 
 function Book(title, author, pages, read) {
@@ -15,8 +14,7 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-
- const addBookToLibrary = () => {
+const addBookToLibrary = () => {
     let title = document.getElementById("title").value;
     let author = document.getElementById("author").value;
     let pages = document.getElementById("pages").value;
@@ -29,6 +27,8 @@ function addNewBook() {
     if(validateInputs()){
         addBookToLibrary();
         appendNewRow();
+        document.querySelector(".myForm").reset();
+        document.getElementById("add-new-book").classList.add("hidden");
     }
 }
 
@@ -60,7 +60,6 @@ function appendNewRow() {
     table.appendChild(row);
 }
 
-
 const table = document.querySelector(".content");
 
 function displayTable() {
@@ -83,12 +82,14 @@ function displayTable() {
         table.appendChild(row);
     }
 }
-
 displayTable();
 
-const newBookButton = document.querySelector(".new-book");
-newBookButton.addEventListener("click", newBookForm);
+function addNew() {
+    let tableFooter = document.getElementById("add-new-book");
+    tableFooter.classList.remove("hidden");
+}
 
+/* not used. did not want to delete in case i need it. see above function */
 function newBookForm() {
     const tableFooter = document.querySelector(".add-new-book");
 
@@ -166,8 +167,6 @@ function newBookForm() {
     newCheckCell.appendChild(newInputCheck);
 
 }
-
-newBookForm();
 
 function refreshTable() {
     while (table.firstChild) {
