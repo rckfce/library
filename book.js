@@ -1,6 +1,10 @@
 let myLibrary = [
-    {title:"Bourne Identity", author:"R.Ludlum", pages:"312", read:"yes"}
+    {title:"Bourne Identity", author:"R.Ludlum", pages:"312", read:"yes"},
+    {title:"Bourne Identity1", author:"R.Ludlum", pages:"312", read:"yes"},
+    {title:"Bourne Identity2", author:"R.Ludlum", pages:"312", read:"yes"},
+    {title:"Bourne Identity4", author:"R.Ludlum", pages:"312", read:"yes"}
 ];
+
 
 /*   constuctor    */
 
@@ -20,7 +24,7 @@ const addBookToLibrary = () => {
     let newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
 }
- 
+  
 addBookToLibrary();
 
 console.log(myLibrary);
@@ -37,6 +41,8 @@ function displayTable() {
         }
         let lastCell = document.createElement("th");
         let editImg = document.createElement("img");
+        editImg.setAttribute("onclick", "deleteRow(this)");
+        editImg.setAttribute("data-id", i);
         editImg.src = "img/delete.png";
         lastCell.classList.add("edit");
         lastCell.appendChild(editImg);
@@ -129,3 +135,15 @@ function newBookForm() {
 }
 
 newBookForm();
+
+function refreshTable() {
+    while (table.firstChild) {
+        table.removeChild(table.firstChild);
+    }
+    displayTable();
+}
+
+function deleteRow(d) {
+    myLibrary.splice(d.getAttribute("data-id"), 1);
+    refreshTable();
+}
